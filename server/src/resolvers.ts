@@ -2,6 +2,7 @@ import { GraphQLError } from "graphql";
 import { Resolvers } from "./types.js";
 import { createUser } from "./mutations/createUser.js";
 import { signIn } from "./mutations/signIn.js";
+import { createArticle } from "./mutations/createArticle.js";
 
 export const resolvers: Resolvers = {
   Query: {
@@ -14,6 +15,7 @@ export const resolvers: Resolvers = {
   },
   Mutation: {
     createUser: createUser,
-    signIn: signIn
+    signIn: signIn,
+    createArticle: createArticle
   },
 }

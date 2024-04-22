@@ -11,6 +11,7 @@ type Mutation {
   createArticle(content: String!, userId: ID!): CreateArticleResponse
   createComment(content: String!, userId: ID!, articleId: ID!): CreateCommentResponse
   likeArticle(articleId: String!, userId: String!): LikeArticleResponse
+  unlikeArticle(articleId: String!, userId: String!): UnlikeArticleResponse
 }
 
 type CreateUserResponse {
@@ -39,7 +40,15 @@ type CreateCommentResponse {
   success: Boolean!
   message: String!
   comment: Comment
+}
+
 type LikeArticleResponse {
+  code: Int!
+  success: Boolean!
+  message: String!
+}
+
+type UnlikeArticleResponse {
   code: Int!
   success: Boolean!
   message: String!

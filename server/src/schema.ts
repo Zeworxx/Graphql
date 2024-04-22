@@ -21,6 +21,7 @@ type SignInResponse {
   code: Int!
   success: Boolean!
   message: String!
+  token: String
 }
 
 type User {

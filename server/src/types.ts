@@ -21,7 +21,7 @@ export type Article = {
   __typename?: 'Article';
   content: Scalars['String']['output'];
   id: Scalars['ID']['output'];
-  userId: Scalars['ID']['output'];
+  userId: Scalars['String']['output'];
 };
 
 export type CreateArticleResponse = {
@@ -194,7 +194,7 @@ export type ResolversParentTypes = {
 export type ArticleResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Article'] = ResolversParentTypes['Article']> = {
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  userId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

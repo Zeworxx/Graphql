@@ -40,6 +40,6 @@ type User {
 type Article {
   id: ID!
   content: String!
-  userId: ID!
+  userId: String!
 }
 `

@@ -24,10 +24,26 @@ export type Article = {
   userId: Scalars['String']['output'];
 };
 
+export type Comment = {
+  __typename?: 'Comment';
+  articleId: Scalars['String']['output'];
+  content: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  userId: Scalars['String']['output'];
+};
+
 export type CreateArticleResponse = {
   __typename?: 'CreateArticleResponse';
   article?: Maybe<Article>;
   code: Scalars['Int']['output'];
+  message: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
+};
+
+export type CreateCommentResponse = {
+  __typename?: 'CreateCommentResponse';
+  code: Scalars['Int']['output'];
+  comment?: Maybe<Comment>;
   message: Scalars['String']['output'];
   success: Scalars['Boolean']['output'];
 };
@@ -43,12 +59,20 @@ export type CreateUserResponse = {
 export type Mutation = {
   __typename?: 'Mutation';
   createArticle?: Maybe<CreateArticleResponse>;
+  createComment?: Maybe<CreateCommentResponse>;
   createUser?: Maybe<CreateUserResponse>;
   signIn?: Maybe<SignInResponse>;
 };
 
 
 export type MutationCreateArticleArgs = {
+  content: Scalars['String']['input'];
+  userId: Scalars['ID']['input'];
+};
+
+
+export type MutationCreateCommentArgs = {
+  articleId: Scalars['ID']['input'];
   content: Scalars['String']['input'];
   userId: Scalars['ID']['input'];
 };
@@ -163,7 +187,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Article: ResolverTypeWrapper<Article>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  Comment: ResolverTypeWrapper<Comment>;
   CreateArticleResponse: ResolverTypeWrapper<CreateArticleResponse>;
+  CreateCommentResponse: ResolverTypeWrapper<CreateCommentResponse>;
   CreateUserResponse: ResolverTypeWrapper<CreateUserResponse>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
@@ -179,7 +205,9 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Article: Article;
   Boolean: Scalars['Boolean']['output'];
+  Comment: Comment;
   CreateArticleResponse: CreateArticleResponse;
+  CreateCommentResponse: CreateCommentResponse;
   CreateUserResponse: CreateUserResponse;
   Float: Scalars['Float']['output'];
   ID: Scalars['ID']['output'];
@@ -198,9 +226,25 @@ export type ArticleResolvers<ContextType = DataSourceContext, ParentType extends
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type CommentResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Comment'] = ResolversParentTypes['Comment']> = {
+  articleId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type CreateArticleResponseResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['CreateArticleResponse'] = ResolversParentTypes['CreateArticleResponse']> = {
   article?: Resolver<Maybe<ResolversTypes['Article']>, ParentType, ContextType>;
   code?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  success?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CreateCommentResponseResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['CreateCommentResponse'] = ResolversParentTypes['CreateCommentResponse']> = {
+  code?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  comment?: Resolver<Maybe<ResolversTypes['Comment']>, ParentType, ContextType>;
   message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   success?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -216,6 +260,7 @@ export type CreateUserResponseResolvers<ContextType = DataSourceContext, ParentT
 
 export type MutationResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createArticle?: Resolver<Maybe<ResolversTypes['CreateArticleResponse']>, ParentType, ContextType, RequireFields<MutationCreateArticleArgs, 'content' | 'userId'>>;
+  createComment?: Resolver<Maybe<ResolversTypes['CreateCommentResponse']>, ParentType, ContextType, RequireFields<MutationCreateCommentArgs, 'articleId' | 'content' | 'userId'>>;
   createUser?: Resolver<Maybe<ResolversTypes['CreateUserResponse']>, ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'password' | 'username'>>;
   signIn?: Resolver<Maybe<ResolversTypes['SignInResponse']>, ParentType, ContextType, RequireFields<MutationSignInArgs, 'password' | 'username'>>;
 };
@@ -240,7 +285,9 @@ export type UserResolvers<ContextType = DataSourceContext, ParentType extends Re
 
 export type Resolvers<ContextType = DataSourceContext> = {
   Article?: ArticleResolvers<ContextType>;
+  Comment?: CommentResolvers<ContextType>;
   CreateArticleResponse?: CreateArticleResponseResolvers<ContextType>;
+  CreateCommentResponse?: CreateCommentResponseResolvers<ContextType>;
   CreateUserResponse?: CreateUserResponseResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

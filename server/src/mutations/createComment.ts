@@ -10,7 +10,7 @@ export const createComment: MutationResolvers['createComment'] = async (_, { con
             code: 201,
             message: 'Comment has been created',
             success: true,
-            article: {
+            comment: {
                 id: createdComment.id,
                 content: createdComment.content,
                 userId: userId,
@@ -23,7 +23,7 @@ export const createComment: MutationResolvers['createComment'] = async (_, { con
             code: 400,
             message: (e as Error).message,
             success: false,
-            article: null
+            comment: null
         }
     }
 }

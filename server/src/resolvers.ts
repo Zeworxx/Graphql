@@ -11,12 +11,32 @@ import { deleteArticle } from "./mutations/deleteArticle.js";
 export const resolvers: Resolvers = {
   Query: {
     getArticles: async (_, __, { dataSources }) => {
-      const articles = await dataSources.db.article.findMany();
+      const articles = await dataSources.db.article.findMany({
+        include: {
+          comments: true,
+          likes: true,
+        }
+      },
+      )
 
       if (!articles || articles.length === 0) {
         throw new GraphQLError("No articles found");
       }
-      return articles;
+      // Cast the userId, articleId, and commentId to string to avoid string | null
+      return articles.map(article => ({
+        ...article,
+        userId: article.userId as string,
+        comments: article.comments.map(comment => ({
+          ...comment,
+          userId: comment.userId as string,
+          articleId: comment.articleId as string,
+        })),
+        likes: article.likes.map(like => ({
+          ...like,
+          userId: like.userId as string,
+          articleId: like.articleId as string,
+        })),
+      }));
     },
   },
   Mutation: {

@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const typeDefs = gql`
 type Query {
-  divide(number1: Int!, number2: Int!): Float
+  getArticles: [Article!]
 }
 
 type Mutation {
@@ -10,9 +10,16 @@ type Mutation {
   signIn(username: String!, password: String!): SignInResponse
   createArticle(content: String!, userId: ID!): CreateArticleResponse
   createComment(content: String!, userId: ID!, articleId: ID!): CreateCommentResponse
-  likeArticle(articleId: String!, userId: String!): LikeArticleResponse
-  unlikeArticle(articleId: String!, userId: String!): UnlikeArticleResponse
-  deleteComment(articleId: String!, userId: ID!): DeleteCommentResponse
+  likeArticle(articleId: String!, userId: String!): DefaultResponse
+  unlikeArticle(articleId: String!, userId: String!): DefaultResponse
+  deleteComment(articleId: String!, userId: ID!): DefaultResponse  
+  deleteArticle(articleId: String!, userId: ID!): DefaultResponse
+}
+
+type DefaultResponse {
+  code: Int!
+  success: Boolean!
+  message: String!
 }
 
 type DeleteCommentResponse {
@@ -49,17 +56,6 @@ type CreateCommentResponse {
   comment: Comment
 }
 
-type LikeArticleResponse {
-  code: Int!
-  success: Boolean!
-  message: String!
-}
-
-type UnlikeArticleResponse {
-  code: Int!
-  success: Boolean!
-  message: String!
-}
 
 type User {
   id: ID!

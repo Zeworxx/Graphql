@@ -6,14 +6,17 @@ import { createArticle } from "./mutations/createArticle.js";
 import { createComment } from "./mutations/createComment.js";
 import { likeArticle, unlikeArticle } from "./mutations/likeArticle.js";
 import { deleteComment } from "./mutations/deleteComment.js";
+import { deleteArticle } from "./mutations/deleteArticle.js";
 
 export const resolvers: Resolvers = {
   Query: {
-    divide: (parent, { number1, number2 }, context, info) => {
-      if (number2 === 0) {
-        throw new GraphQLError('cannot divide by 0')
+    getArticles: async (_, __, { dataSources }) => {
+      const articles = await dataSources.db.article.findMany();
+
+      if (!articles || articles.length === 0) {
+        throw new GraphQLError("No articles found");
       }
-      return number1 / number2
+      return articles;
     },
   },
   Mutation: {
@@ -23,6 +26,7 @@ export const resolvers: Resolvers = {
     createComment: createComment,
     likeArticle: likeArticle,
     unlikeArticle: unlikeArticle,
-    deleteComment: deleteComment
+    deleteComment: deleteComment,
+    deleteArticle: deleteArticle
   },
 }

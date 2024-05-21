@@ -18,14 +18,16 @@ export const signIn: MutationResolvers['signIn'] = async (_, {username, password
         code: 200,
         message: 'User signed in',
         token: createJWT({username: user.username, id: user.id}),
-        success: isValidPassword
+        success: isValidPassword,
+        userId: user.id
       }
     } catch(e) {
       return {
         code: 403,
         message: (e as Error)?.message ?? 'An error occured',
         token: null,
-        success: false
+        success: false,
+        userId: null
       }
     }
   }

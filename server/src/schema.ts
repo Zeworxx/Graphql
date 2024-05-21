@@ -14,6 +14,7 @@ type Mutation {
   unlikeArticle(articleId: String!, userId: String!): DefaultResponse
   deleteComment(articleId: String!, userId: ID!): DefaultResponse  
   deleteArticle(articleId: String!, userId: ID!): DefaultResponse
+  updateArticle(id: ID!, content: String!): UpdateArticleResponse
 }
 
 type DefaultResponse {
@@ -43,6 +44,13 @@ type SignInResponse {
 }
 
 type CreateArticleResponse {
+  code: Int!
+  success: Boolean!
+  message: String!
+  article: Article
+}
+
+type UpdateArticleResponse {
   code: Int!
   success: Boolean!
   message: String!

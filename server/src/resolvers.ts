@@ -6,6 +6,7 @@ import { createArticle } from "./mutations/createArticle.js";
 import { createComment } from "./mutations/createComment.js";
 import { likeArticle, unlikeArticle } from "./mutations/likeArticle.js";
 import { deleteComment } from "./mutations/deleteComment.js";
+import { deleteArticle } from "./mutations/deleteArticle.js";
 
 export const resolvers: Resolvers = {
   Query: {
@@ -23,6 +24,7 @@ export const resolvers: Resolvers = {
     createComment: createComment,
     likeArticle: likeArticle,
     unlikeArticle: unlikeArticle,
-    deleteComment: deleteComment
+    deleteComment: deleteComment,
+    deleteArticle: deleteArticle
   },
 }

@@ -35,6 +35,7 @@ type SignInResponse {
   success: Boolean!
   message: String!
   token: String
+  userId: String
 }
 
 type CreateArticleResponse {

@@ -5,6 +5,7 @@ import { signIn } from "./mutations/signIn.js";
 import { createArticle } from "./mutations/createArticle.js";
 import { createComment } from "./mutations/createComment.js";
 import { likeArticle, unlikeArticle } from "./mutations/likeArticle.js";
+import { deleteComment } from "./mutations/deleteComment.js";
 
 export const resolvers: Resolvers = {
   Query: {
@@ -21,6 +22,7 @@ export const resolvers: Resolvers = {
     createArticle: createArticle,
     createComment: createComment,
     likeArticle: likeArticle,
-    unlikeArticle: unlikeArticle
+    unlikeArticle: unlikeArticle,
+    deleteComment: deleteComment
   },
 }

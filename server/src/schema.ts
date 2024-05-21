@@ -56,16 +56,23 @@ type CreateCommentResponse {
   comment: Comment
 }
 
-
 type User {
   id: ID!
   username: String!
+}
+
+type Like {
+  id: ID!
+  userId: String!
+  articleId: String!
 }
 
 type Article {
   id: ID!
   content: String!
   userId: String!
+  comments: [Comment!]
+  likes: [Like!]
 }
 
 type Comment {

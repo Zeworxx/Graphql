@@ -4,7 +4,7 @@
         <div class="flex items-center mt-4">
             <button class="flex items-center text-gray-500 mr-4" @click="likePost">
                 <i class="fas fa-thumbs-up mr-1"></i>
-                <span>{{ post.likes.length }}</span>
+                <span>{{ post.likes }}</span>
             </button>
             <button class="flex items-center text-gray-500" @click="commentPost">
                 <i class="fas fa-comment-alt mr-1"></i>
@@ -25,7 +25,8 @@ defineProps({
 })
 
 const likePost = () => {
-    
+    // Logique pour aimer le post
+    console.log('Post liked');
 }
 
 const commentPost = () => {

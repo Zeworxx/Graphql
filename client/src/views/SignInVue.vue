@@ -1,11 +1,12 @@
 <template>
     <section>
         <div class="grid md:h-screen md:grid-cols-2">
-<div class="flex flex-col items-center justify-center bg-white">
+            <div class="flex flex-col items-center justify-center bg-white">
                 <div class="max-w-lg px-5 py-8 text-center md:px-10 md:py-12 lg:py-24">
                     <img src="../assets/logo.webp" alt="Logo Touitter" class="w-24 h-24 mx-auto rounded-full">
                     <h1 class="mb-4 text-3xl font-bold text-gray-900">Login</h1>
-                    <form @submit.prevent="login" class="mx-auto mb-4 max-w-sm pb-4" name="wf-form-password" method="get">
+                    <form @submit.prevent="login" class="mx-auto mb-4 max-w-sm pb-4" name="wf-form-password"
+                        method="get">
                         <div class="relative">
                             <FontAwesomeIcon icon="envelope"
                                 class="absolute bottom-0 left-[5%] right-auto top-[26%] inline-block text-2xl" />
@@ -59,21 +60,12 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useMutation } from '@vue/apollo-composable';
-import gql from 'graphql-tag';
-import { FontAwesomeIcon } from '../fontawesome';
-import axios from 'axios';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
+import { FontAwesomeIcon } from '../fontawesome';
+import { useSignInMutation } from '../generated/graphql'
 
 const router = useRouter();
-const SIGNIN_USER = gql`mutation signIn($username: String!, $password: String!) {
-                    signIn(username: $username, password: $password) {
-                        code
-                        success
-                        message
-                        token
-                    }
-                }`;
 
 const model = ref({
     username: '',
@@ -83,7 +75,7 @@ const model = ref({
         password: ''
     },
 })
-let isLoginFail=ref(false);
+let isLoginFail = ref(false);
 const login = async () => {
     model.value.errors = {
         username: '',
@@ -95,21 +87,16 @@ const login = async () => {
     }
 
     if (!model.value.errors.username && !model.value.errors.password) {
-        const { mutate: loggedIn } = useMutation(SIGNIN_USER, {
-            variables: {
-                username: model.value.username,
-                password: model.value.password
-            }
-        });
+        const { mutate: signIn } = useSignInMutation()
 
-        const result = await loggedIn();
-        if(result?.data.signIn.success) {
+        const result = await signIn({ username: model.value.username, password: model.value.password })
+        if (result?.data.signIn.success) {
             console.log('User logged in');
             window.localStorage.setItem('authToken', result.data.signIn.token);
             axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.signIn.token}`;
             router.push({ name: 'Home' });
         } else {
-            isLoginFail.value = true; 
+            isLoginFail.value = true;
             console.log('Login failed');
         }
     }

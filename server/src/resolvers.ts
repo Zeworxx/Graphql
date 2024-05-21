@@ -2,6 +2,10 @@ import { GraphQLError } from "graphql";
 import { Resolvers } from "./types.js";
 import { createUser } from "./mutations/createUser.js";
 import { signIn } from "./mutations/signIn.js";
+import { createArticle } from "./mutations/createArticle.js";
+import { createComment } from "./mutations/createComment.js";
+import { likeArticle, unlikeArticle } from "./mutations/likeArticle.js";
+import { deleteComment } from "./mutations/deleteComment.js";
 
 export const resolvers: Resolvers = {
   Query: {
@@ -14,6 +18,11 @@ export const resolvers: Resolvers = {
   },
   Mutation: {
     createUser: createUser,
-    signIn: signIn
+    signIn: signIn,
+    createArticle: createArticle,
+    createComment: createComment,
+    likeArticle: likeArticle,
+    unlikeArticle: unlikeArticle,
+    deleteComment: deleteComment
   },
 }

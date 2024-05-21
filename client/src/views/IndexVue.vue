@@ -1,3 +1,3 @@
 <template>
-    <header>Index view</header>
+  <header>Index view</header>
 </template>

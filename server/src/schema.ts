@@ -12,6 +12,13 @@ type Mutation {
   createComment(content: String!, userId: ID!, articleId: ID!): CreateCommentResponse
   likeArticle(articleId: String!, userId: String!): LikeArticleResponse
   unlikeArticle(articleId: String!, userId: String!): UnlikeArticleResponse
+  deleteComment(articleId: String!, userId: ID!): DeleteCommentResponse
+}
+
+type DeleteCommentResponse {
+  code: Int!
+  success: Boolean!
+  message: String!
 }
 
 type CreateUserResponse {

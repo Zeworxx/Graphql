@@ -23,6 +23,7 @@
     "@vue/apollo-components": "^4.0.0",
     "@vue/apollo-composable": "^4.0.2",
     "axios": "^1.6.8",
+    "@vue/apollo-option": "^4.0.0",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
     "vue": "^3.4.21",

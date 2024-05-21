@@ -3,7 +3,7 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="text-center text-2xl">Index view</div>
+  <header></header>
   <RouterView />
 </template>
 

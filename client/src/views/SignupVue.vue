@@ -2,7 +2,6 @@
     <div class="flex flex-col items-center justify-center">
         <div class="mx-auto w-1/6 border-2 border-grey-300 shadow-md p-4 mt-32">
             <h1 class="my-4 text-center text-2xl">Sign Up</h1>
-            <div>{{ model }}</div>
             <form @submit.prevent="signin" class="flex flex-col justify-center text-left">
                 <label for="username">Username</label>
                 <input type="text" v-model="model.username" name="username" placeholder="Username" required
@@ -34,7 +33,6 @@ import { gql } from 'graphql-tag';
 
 const CREATE_USER = gql`mutation CreateUser($username: String!, $password: String!) {
                     createUser(username: $username, password: $password) {
-                        code
                         success
                         message
                         user {
@@ -98,6 +96,7 @@ const signup = async () => {
         const result = await created();
         if(result?.data.createUser.success) {
             console.log('User created');
+            localStorage.setItem('logged', 'true');
         } else {
             console.log('User not created');
         }

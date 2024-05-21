@@ -1,12 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type NavigationGuardNext } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
       name: 'Home',
-      component: () => import('../views/IndexVue.vue')
+      component: () => import('../views/IndexVue.vue'),
+      beforeEnter: (to, from, next) => checkAuth(next) 
     },
     {
       path: '/signup',
@@ -20,5 +21,14 @@ const router = createRouter({
     }
   ]
 });
+
+function checkAuth(next: NavigationGuardNext): void {
+  const logged = localStorage.getItem('logged') === 'true'
+  if (!logged) {
+    next('/login')
+  } else {
+    next()
+  }
+}
 
 export default router

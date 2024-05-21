@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 
 export const typeDefs = gql`
 type Query {
-  divide(number1: Int!, number2: Int!): Float
+  getArticles: [Article!]
 }
 
 type Mutation {

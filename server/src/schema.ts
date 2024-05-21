@@ -12,6 +12,8 @@ type Mutation {
   createComment(content: String!, userId: ID!, articleId: ID!): CreateCommentResponse
   likeArticle(articleId: String!, userId: String!): DefaultResponse
   unlikeArticle(articleId: String!, userId: String!): DefaultResponse
+  deleteComment(articleId: String!, userId: ID!): DefaultResponse  
+  deleteArticle(articleId: String!, userId: ID!): DefaultResponse
 }
 
 type DefaultResponse {

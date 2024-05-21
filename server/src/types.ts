@@ -77,6 +77,8 @@ export type Mutation = {
   createArticle?: Maybe<CreateArticleResponse>;
   createComment?: Maybe<CreateCommentResponse>;
   createUser?: Maybe<CreateUserResponse>;
+  deleteArticle?: Maybe<DefaultResponse>;
+  deleteComment?: Maybe<DefaultResponse>;
   likeArticle?: Maybe<DefaultResponse>;
   signIn?: Maybe<SignInResponse>;
   unlikeArticle?: Maybe<DefaultResponse>;
@@ -316,6 +318,8 @@ export type MutationResolvers<ContextType = DataSourceContext, ParentType extend
   createArticle?: Resolver<Maybe<ResolversTypes['CreateArticleResponse']>, ParentType, ContextType, RequireFields<MutationCreateArticleArgs, 'content' | 'userId'>>;
   createComment?: Resolver<Maybe<ResolversTypes['CreateCommentResponse']>, ParentType, ContextType, RequireFields<MutationCreateCommentArgs, 'articleId' | 'content' | 'userId'>>;
   createUser?: Resolver<Maybe<ResolversTypes['CreateUserResponse']>, ParentType, ContextType, RequireFields<MutationCreateUserArgs, 'password' | 'username'>>;
+  deleteArticle?: Resolver<Maybe<ResolversTypes['DefaultResponse']>, ParentType, ContextType, RequireFields<MutationDeleteArticleArgs, 'articleId' | 'userId'>>;
+  deleteComment?: Resolver<Maybe<ResolversTypes['DefaultResponse']>, ParentType, ContextType, RequireFields<MutationDeleteCommentArgs, 'articleId' | 'userId'>>;
   likeArticle?: Resolver<Maybe<ResolversTypes['DefaultResponse']>, ParentType, ContextType, RequireFields<MutationLikeArticleArgs, 'articleId' | 'userId'>>;
   signIn?: Resolver<Maybe<ResolversTypes['SignInResponse']>, ParentType, ContextType, RequireFields<MutationSignInArgs, 'password' | 'username'>>;
   unlikeArticle?: Resolver<Maybe<ResolversTypes['DefaultResponse']>, ParentType, ContextType, RequireFields<MutationUnlikeArticleArgs, 'articleId' | 'userId'>>;

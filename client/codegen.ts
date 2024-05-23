@@ -5,9 +5,12 @@ const config: CodegenConfig = {
   schema: 'http://localhost:4000',
   documents: './src/**/*.vue',
   generates: {
-    './src/graphql/': {
+    './src/generated/': {
       preset: 'client',
-      plugins: ['typescript', 'typescript-operations', 'typescript-vue-apollo']
+      plugins: ['typescript', 'typescript-operations', 'typescript-vue-apollo'],
+      config: {
+        useTypeImports: true 
+      }
     }
   }
 }

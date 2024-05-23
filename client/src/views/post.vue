@@ -1,35 +1,44 @@
-<template lang="">
-    <section class="m-2 p-4 border">
-    <div class="mx-auto w-full" data-aos="fade-up" data-aos-duration="900">
-        <div class="">
-            <div class="flex">
-                <div class="rounded-full border h-12 w-12 text-center"> <FontAwesomeIcon icon="user"   size="2x"/></div>
-                <!-- <img src="../assts/logo.webp" alt="Profile" class="w-12 h-12 rounded-full" /> -->
-                <div class="mx-2">
-                    <div>
-                        <p class="text-xl font-bold"> UserName </p>
-                        <div class="flex-wrap items-center text-sm">
-                            <span>By Bryan Smith</span>
-                            <span class="mx-2 font-bold text-2xl">·</span>
-                            <span>22h</span>
-                        </div>
+<template>
+    <div class="grid grid-cols-3">
+        <div></div>
+        <section class="m-2 p-4 border">
+            <div v-for="post in posts" :key="post.id" :post="post" class="mb-2 w-full">
+                <div class="bg-white rounded-lg shadow-md p-4">
+                    <p class="mt-4">{{ post.content }}</p>
+                    <div class="flex items-center mt-4">
+                        <button class="flex items-center text-gray-500 mr-4" @click="likePost">
+                            <i class="fas fa-thumbs-up mr-1"></i>
+                            <span>{{ post.likes.length }}</span>
+                        </button>
+                        <button class="flex items-center text-gray-500" @click="commentPost">
+                            <i class="fas fa-comment-alt mr-1"></i>
+                            <span>{{ post.comments }}</span>
+                        </button>
                     </div>
-                    <div class="h-px w-full bg-grat-100">
-                        content
-                    </div>
-                </div>
+                </div> 
             </div>
-        </div>
+        </section>
+        <div></div>
+        <!-- <div v-else class="m-2 p-4 border">
+            <p>No post found</p>
+        </div> -->
     </div>
-    </section>
 </template>
-<script lang="ts">
-import { FontAwesomeIcon } from '../fontawesome'
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useGetArticlesQuery, GetArticlesQuery } from '../generated/graphql'
 
-export default {
-    components: {
-        FontAwesomeIcon
-    }
+let posts: GetArticlesQuery[] = ref([]);
+
+const { result } = useGetArticlesQuery();
+posts.value = result.value?.getArticles
+
+const likePost = () => {
+
+}
+
+const commentPost = () => {
+    // Logique pour commenter le post
+    console.log('Post commented');
 }
 </script>
-<style></style>

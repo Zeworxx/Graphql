@@ -29,19 +29,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useMutation } from '@vue/apollo-composable';
-import { gql } from 'graphql-tag';
 import { useRouter } from 'vue-router';
-
-const CREATE_USER = gql`mutation CreateUser($username: String!, $password: String!) {
-                    createUser(username: $username, password: $password) {
-                        success
-                        message
-                        user {
-                        id
-                        username
-                        }
-                    }
-                }`;
 
 const model = ref({
     username: '',

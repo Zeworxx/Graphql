@@ -11,7 +11,7 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "npx graphql-codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",

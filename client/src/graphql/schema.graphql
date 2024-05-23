@@ -1,0 +1,133 @@
+mutation CreateUser($username: String!, $password: String!) {
+  createUser(username: $username, password: $password) {
+    code
+    success
+    message
+    user {
+      id
+      username
+    }
+  }
+}
+
+mutation SignIn($username: String!, $password: String!) {
+  signIn(username: $username, password: $password) {
+    code
+    success
+    message
+    token
+  }
+}
+
+mutation CreateArticle($content: String!, $userId: ID!) {
+  createArticle(content: $content, userId: $userId) {
+    code
+    success
+    message
+    article {
+      id
+      content
+      userId
+      comments {
+        id
+        content
+        userId
+        articleId
+      }
+      likes {
+        id
+        userId
+        articleId
+      }
+    }
+  }
+}
+
+mutation CreateComment($content: String!, $userId: ID!, $articleId: ID!) {
+  createComment(content: $content, userId: $userId, articleId: $articleId) {
+    code
+    success
+    message
+    comment {
+      id
+      content
+      userId
+      articleId
+    }
+  }
+}
+
+mutation LikeArticle($articleId: String!, $userId: String!) {
+  likeArticle(articleId: $articleId, userId: $userId) {
+    code
+    success
+    message
+  }
+}
+
+mutation UnlikeArticle($articleId: String!, $userId: String!) {
+  unlikeArticle(articleId: $articleId, userId: $userId) {
+    code
+    success
+    message
+  }
+}
+
+mutation DeleteComment($articleId: String!, $userId: ID!) {
+  deleteComment(articleId: $articleId, userId: $userId) {
+    code
+    success
+    message
+  }
+}
+
+mutation DeleteArticle($articleId: String!, $userId: ID!) {
+  deleteArticle(articleId: $articleId, userId: $userId) {
+    code
+    success
+    message
+  }
+}
+
+mutation UpdateArticle($id: ID!, $content: String!) {
+  updateArticle(id: $id, content: $content) {
+    code
+    success
+    message
+    article {
+      id
+      content
+      userId
+      comments {
+        id
+        content
+        userId
+        articleId
+      }
+      likes {
+        id
+        userId
+        articleId
+      }
+    }
+  }
+}
+
+query Query {
+  getArticles {
+    id
+    content
+    userId
+    comments {
+      id
+      content
+      userId
+      articleId
+    }
+    likes {
+      id
+      userId
+      articleId
+    }
+  }
+}

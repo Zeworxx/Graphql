@@ -1,15 +1,18 @@
-import type { CodegenConfig } from '@graphql-codegen/cli'
+import type { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
   overwrite: true,
   schema: 'http://localhost:4000',
-  documents: './src/**/*.vue',
+  documents: './src/graphql/**/*.graphql',
   generates: {
-    './src/graphql/': {
+    './src/generated/': {
       preset: 'client',
-      plugins: ['typescript', 'typescript-operations', 'typescript-vue-apollo']
+      plugins: ['typescript', 'typescript-operations', 'typescript-vue-apollo'],
+      config: {
+        useTypeImports: true 
+      }
     }
   }
-}
+};
 
-export default config
+export default config;

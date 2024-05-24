@@ -2,7 +2,6 @@
     <div class="flex flex-col items-center justify-center">
         <div class="mx-auto w-1/6 border-2 border-grey-300 shadow-md p-4 mt-32">
             <h1 class="my-4 text-center text-2xl">Sign Up</h1>
-            <div>{{ model }}</div>
             <form @submit.prevent="signin" class="flex flex-col justify-center text-left">
                 <label for="username">Username</label>
                 <input type="text" v-model="model.username" name="username" placeholder="Username" required
@@ -30,19 +29,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useMutation } from '@vue/apollo-composable';
-import { gql } from 'graphql-tag';
+// import { gql } from 'graphql-tag';
+import { useRouter } from 'vue-router';
+import { useCreateUserMutation } from '../generated/graphql';
 
-const CREATE_USER = gql`mutation CreateUser($username: String!, $password: String!) {
-                    createUser(username: $username, password: $password) {
-                        code
-                        success
-                        message
-                        user {
-                        id
-                        username
-                        }
-                    }
-                }`;
+const router = useRouter();
 
 const model = ref({
     username: '',
@@ -88,19 +79,21 @@ const signup = async () => {
     }
 
     if (!model.value.errors.username && !model.value.errors.password && !model.value.errors.confirmPassword) {
-        const { mutate: created } = useMutation(CREATE_USER, {
-            variables: {
+        const { mutate: createUser } = useCreateUserMutation({ variables: {
                 username: model.value.username,
                 password: model.value.password
             }
         });
 
-        const result = await created();
-        if(result?.data.createUser.success) {
-            console.log('User created');
+        const result = await createUser() || {};
+
+        if(result.data?.createUser?.success) {
+            localStorage.setItem('logged', 'true');
+            router.push('/');
         } else {
             console.log('User not created');
         }
+           
     }
 }
 </script>

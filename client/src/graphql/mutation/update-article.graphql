@@ -1,0 +1,10 @@
+mutation UpdateArticle($updateArticleId: ID!, $content: String!) {
+  updateArticle(id: $updateArticleId, content: $content) {
+    code
+    success
+    message
+    article {
+      id
+    }
+  }
+}

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <section>
         <div class="grid md:h-screen md:grid-cols-2">
             <div class="flex flex-col items-center justify-center bg-white">
@@ -147,4 +147,4 @@ const login = async () => {
         transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
     }
 }
-</style>
+</style> -->

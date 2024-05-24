@@ -90,6 +90,9 @@ const signup = async () => {
     if (!model.value.errors.username && !model.value.errors.password && !model.value.errors.confirmPassword) {
         const { mutate: createUser } = useCreateUserMutation({
             variables: {
+=======
+        const { mutate: createUser } = useCreateUserMutation({ variables: {
+>>>>>>> 61a438f (feat: adding codegen & posts)
                 username: model.value.username,
                 password: model.value.password
             }

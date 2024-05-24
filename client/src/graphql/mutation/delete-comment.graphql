@@ -1,0 +1,7 @@
+mutation DeleteComment($articleId: String!, $userId: ID!) {
+  deleteComment(articleId: $articleId, userId: $userId) {
+    code
+    success
+    message
+  }
+}

@@ -1,0 +1,18 @@
+query GetArticlesQuery {
+  getArticles {
+    id
+    content
+    userId
+    comments {
+      id
+      content
+      userId
+      articleId
+    }
+    likes {
+      id
+      userId
+      articleId
+    }
+  }
+}

@@ -28,20 +28,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useMutation } from '@vue/apollo-composable';
-import { gql } from 'graphql-tag';
 import { useRouter } from 'vue-router';
-
-const CREATE_USER = gql`mutation CreateUser($username: String!, $password: String!) {
-                    createUser(username: $username, password: $password) {
-                        success
-                        message
-                        user {
-                        id
-                        username
-                        }
-                    }
-                }`;
 
 const model = ref({
     username: '',
@@ -87,26 +74,16 @@ const signup = async () => {
     }
 
     if (!model.value.errors.username && !model.value.errors.password && !model.value.errors.confirmPassword) {
-<<<<<<< HEAD
         const { mutate: createUser } = useCreateUserMutation({
-=======
-        const { mutate: created } = useMutation(CREATE_USER, {
->>>>>>> 36a733d (feat: Add sign-in mutation and view for article creation)
             variables: {
                 username: model.value.username,
                 password: model.value.password
             }
         });
 
-<<<<<<< HEAD
         const result = await createUser() || {};
 
         if (result.data?.createUser?.success) {
-=======
-        const result = await created();
-        if (result?.data.createUser.success) {
-            console.log('User created');
->>>>>>> 36a733d (feat: Add sign-in mutation and view for article creation)
             localStorage.setItem('logged', 'true');
             useRouter().push('/');
         } else {

@@ -1,0 +1,8 @@
+`mutation CreateArticle($content: String!, $userId: ID!) {
+  createArticle(content: $content, userId: $userId) {
+    message
+    code
+    success
+  }
+}
+`

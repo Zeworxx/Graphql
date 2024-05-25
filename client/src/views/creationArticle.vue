@@ -18,7 +18,7 @@
 
 <script>
 import { ref } from 'vue';
-import { useCreateArticleMutation } from '../graphql/graphql';
+import { useCreateArticleMutation } from '../generated/graphql';
 import gql from 'graphql-tag';
 
 export default {

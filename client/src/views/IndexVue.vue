@@ -8,7 +8,7 @@ import Post from './post.vue'
 export default {
     components: {
         Navbar,
-        Post
+        Post,
     }
 }
 </script>

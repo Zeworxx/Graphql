@@ -36,7 +36,6 @@ const likePost = async () => {
         console.log('like success');
 
     } else {
-        console.log(props.postId);
         console.log('like failed');
     }
 };
@@ -45,7 +44,7 @@ const dislikePost = async () => {
     disliked.value = true;
     liked.value = false;
 
-    const { mutate: dislike } = useLikeArticleMutation()
+    const { mutate: dislike } = useUnlikeArticleMutation()
 
     const result = await dislike({ userId: userId, articleId: props.postId })
     if (result?.data.likeArticle.success) {

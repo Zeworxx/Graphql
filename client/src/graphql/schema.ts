@@ -88,7 +88,7 @@ const schema = gql`
     }
   }
 
-  mutation UnlkieArticle($articleId: String!, $userId: String!) {
+  mutation UnlikeArticle($articleId: String!, $userId: String!) {
     unlikeArticle(articleId: $articleId, userId: $userId) {
       code
       success

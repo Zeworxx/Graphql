@@ -25,7 +25,7 @@ const router = createRouter({
 function checkAuth(next: NavigationGuardNext): void {
   const logged = localStorage.getItem('logged') === 'true'
   if (!logged) {
-    next('/login')
+    next('/signin')
   } else {
     next()
   }

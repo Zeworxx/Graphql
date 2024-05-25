@@ -7,12 +7,13 @@
                 <div class="bg-white rounded-lg shadow-md p-4 mb-8">
                     <p class="mt-4">{{ article.content }}</p>
                     <div class="flex justify-between mt-4">
-                        <button class="flex items-center text-gray-500 mr-4" @click="likeArticle">
-                            <i class="fas fa-thumbs-up mr-1"></i>
-                            <span>{{ article.likes.length }} like(s)</span>
-                        </button>
+
+                        <div class="flex">
+                            <like :postId="article.id" />
+                            <span class="text-gray-500">{{ article.likes.length }} like(s)</span>
+                        </div>
                         <button class="flex items-center text-gray-500" @click="commentArticle">
-                            <i class="fas fa-comment-alt mr-1"></i>
+                            <FontAwesomeIcon icon="comment-alt" class="text-blue-500 mr-1" />
                             <span @click="openComments(article.id)">{{ article.comments.length }} Comment(s)</span>
                         </button>
                     </div>
@@ -29,15 +30,14 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useGetArticlesQuery } from '../generated/graphql'
-import creationArticle from './creationArticle.vue'
+import { FontAwesomeIcon } from '../fontawesome';
+import { useGetArticlesQuery } from '../generated/graphql';
+import creationArticle from './creationArticle.vue';
+import like from './like.vue';
 
 const { result: posts } = useGetArticlesQuery();
 const articles = computed(() => posts.value?.getArticles);
 
-const likeArticle = () => {
-
-}
 
 const openComments = (articleId: string) => {
     console.log('Comments opened');

@@ -70,6 +70,8 @@ const closeMenu = (event) => {
 
 const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('logged');
     router.push({ name: 'SignIn' });
 };
 

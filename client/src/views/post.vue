@@ -67,7 +67,7 @@ const userId = localStorage.getItem('user');
 const { mutate: deleteArticleMutation } = useDeleteArticleMutation();
 const { mutate: updateArticleMutation } = useUpdateArticleMutation();
 
-const { result: posts } = useGetArticlesQuery();
+const { result: posts, refetch } = useGetArticlesQuery();
 const articles = computed(() => posts.value?.getArticles);
 
 const editingArticleId = ref(null);
@@ -75,12 +75,13 @@ const editingContent = ref('');
 
 const deleteArticle = async (articleId: string) => {
     try {
-        await deleteArticleMutation({ id: articleId, userId });
+        await deleteArticleMutation({ articleId, userId });
         action.value = 'supprimé';
         actionSuccess.value = true;
         setTimeout(() => {
             actionSuccess.value = null;
         }, 5000);
+        refetch();
     } catch (error) {
         action.value = 'suppression';
         actionSuccess.value = false;
@@ -97,15 +98,16 @@ const startEditing = (articleId: string) => {
 }
 
 const updateArticle = async (articleId: string) => {
-    editingArticleId.value = null;
-    editingContent.value = '';
+    console.log(articleId)
     try {
-        await updateArticleMutation({ id: articleId, content: editingContent.value });
+        await updateArticleMutation({ updateArticleId: articleId, content: editingContent.value });
         action.value = 'modifié';
         actionSuccess.value = true;
+        editingContent.value = '';
         setTimeout(() => {
             actionSuccess.value = null;
         }, 5000);
+        refetch();
     } catch (error) {
         action.value = 'modification';
         actionSuccess.value = false;

@@ -19,23 +19,14 @@
 <script>
 import { ref } from 'vue';
 import { useCreateArticleMutation } from '../generated/graphql';
-import gql from 'graphql-tag';
 
 export default {
     setup() {
         const content = ref('');
         const articleCreated = ref(null);
-        const userId = localStorage.getItem('user');
+        const userId = localStorage.getItem('userId');
         const { mutate: article } = useCreateArticleMutation();
-        const CREATE_ARTICLE = gql`
-            mutation CreateArticle($content: String!, $userId: ID!) {
-                createArticle(content: $content, userId: $userId) {
-                message
-                code
-                success
-                }
-            }
-            `;
+
         const createArticle = async () => {
             console.log(content.value);
             const response = await article({ content: content.value, userId });

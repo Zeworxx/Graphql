@@ -66,7 +66,7 @@ export function graphql(source: "mutation LikeArticle($articleId: String!, $user
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation SignIn($username: String!, $password: String!) {\n  signIn(username: $username, password: $password) {\n    code\n    userId\n    success\n    message\n    token\n  }\n}"): (typeof documents)["mutation SignIn($username: String!, $password: String!) {\n  signIn(username: $username, password: $password) {\n    code\n    userId\n    success\n    message\n    token\n  }\n}"];
+export function graphql(source: "mutation signIn($username: String!, $password: String!) {\n  signIn(username: $username, password: $password) {\n    token\n    userId\n    code\n    message\n    success\n  }\n}"): (typeof documents)["mutation signIn($username: String!, $password: String!) {\n  signIn(username: $username, password: $password) {\n    token\n    userId\n    code\n    message\n    success\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

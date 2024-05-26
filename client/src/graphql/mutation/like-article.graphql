@@ -1,0 +1,7 @@
+mutation LikeArticle($articleId: String!, $userId: String!) {
+  likeArticle(articleId: $articleId, userId: $userId) {
+    code
+    success
+    message
+  }
+}

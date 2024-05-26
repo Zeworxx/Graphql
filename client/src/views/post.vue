@@ -73,6 +73,7 @@
 </template>
 
 <script setup lang="ts">
+import { FontAwesomeIcon } from '../fontawesome';
 import { computed, ref } from 'vue';
 import { Article, useCreateCommentMutation, useDeleteArticleMutation, useDeleteCommentMutation, useGetArticlesQuery, useLikeArticleMutation, useUnlikeArticleMutation, useUpdateArticleMutation, type Comment } from '../generated/graphql';
 import creationArticle from './creationArticle.vue';
@@ -141,7 +142,7 @@ const editingContent = ref('');
 
 const deleteArticle = async (articleId: string) => {
     try {
-        await deleteArticleMutation({ articleId, userId });
+        await deleteArticleMutation({ articleId, userId: userId.value });
         action.value = 'supprimé';
         actionSuccess.value = true;
         setTimeout(() => {

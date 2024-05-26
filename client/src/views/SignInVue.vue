@@ -93,7 +93,7 @@ const login = async () => {
         const result = await signIn({ username: model.value.username, password: model.value.password })
         if (result?.data.signIn.success) {
             localStorage.setItem('authToken', result.data.signIn.token);
-            localStorage.setItem('user', result.data.signIn.userId);
+            localStorage.setItem('userId', result.data.signIn.userId);
             localStorage.setItem('logged', true);
             axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.signIn.token}`;
             router.push({ name: 'Home' });

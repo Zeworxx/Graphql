@@ -19,8 +19,8 @@ const documents = {
     "mutation DeleteArticle($articleId: String!, $userId: ID!) {\n  deleteArticle(articleId: $articleId, userId: $userId) {\n    code\n    success\n    message\n  }\n}": types.DeleteArticleDocument,
     "mutation DeleteComment($articleId: String!, $userId: ID!) {\n  deleteComment(articleId: $articleId, userId: $userId) {\n    code\n    success\n    message\n  }\n}": types.DeleteCommentDocument,
     "mutation LikeArticle($articleId: String!, $userId: String!) {\n  likeArticle(articleId: $articleId, userId: $userId) {\n    code\n    success\n    message\n  }\n}": types.LikeArticleDocument,
-    "mutation SignIn($username: String!, $password: String!) {\n  signIn(username: $username, password: $password) {\n    code\n    userId\n    success\n    message\n    token\n  }\n}": types.SignInDocument,
-    "mutation UnlkieArticle($articleId: String!, $userId: String!) {\n  unlikeArticle(articleId: $articleId, userId: $userId) {\n    code\n    success\n    message\n  }\n}": types.UnlkieArticleDocument,
+    "mutation signIn($username: String!, $password: String!) {\n  signIn(username: $username, password: $password) {\n    token\n    userId\n    code\n    message\n    success\n  }\n}": types.SignInDocument,
+    "mutation UnlikeArticle($articleId: String!, $userId: String!) {\n  unlikeArticle(articleId: $articleId, userId: $userId) {\n    code\n    success\n    message\n  }\n}": types.UnlikeArticleDocument,
     "mutation UpdateArticle($updateArticleId: ID!, $content: String!) {\n  updateArticle(id: $updateArticleId, content: $content) {\n    code\n    success\n    message\n    article {\n      id\n    }\n  }\n}": types.UpdateArticleDocument,
     "query GetArticlesQuery {\n  getArticles {\n    id\n    content\n    userId\n    comments {\n      id\n      content\n      userId\n      articleId\n    }\n    likes {\n      userId\n      articleId\n    }\n  }\n}": types.GetArticlesQueryDocument,
 };
@@ -70,7 +70,7 @@ export function graphql(source: "mutation SignIn($username: String!, $password: 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation UnlkieArticle($articleId: String!, $userId: String!) {\n  unlikeArticle(articleId: $articleId, userId: $userId) {\n    code\n    success\n    message\n  }\n}"): (typeof documents)["mutation UnlkieArticle($articleId: String!, $userId: String!) {\n  unlikeArticle(articleId: $articleId, userId: $userId) {\n    code\n    success\n    message\n  }\n}"];
+export function graphql(source: "mutation UnlikeArticle($articleId: String!, $userId: String!) {\n  unlikeArticle(articleId: $articleId, userId: $userId) {\n    code\n    success\n    message\n  }\n}"): (typeof documents)["mutation UnlikeArticle($articleId: String!, $userId: String!) {\n  unlikeArticle(articleId: $articleId, userId: $userId) {\n    code\n    success\n    message\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

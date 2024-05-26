@@ -1,9 +1,9 @@
-mutation SignIn($username: String!, $password: String!) {
+mutation signIn($username: String!, $password: String!) {
   signIn(username: $username, password: $password) {
-    code
-    userId
-    success
-    message
     token
+    userId
+    code
+    message
+    success
   }
 }

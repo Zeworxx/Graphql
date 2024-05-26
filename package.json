@@ -7,7 +7,7 @@
     "concurrently": "^8.2.2"
   },
   "scripts": {
-    "install-deps": "cd server && npm install && cd ../client && npm install --force",
+    "install-deps": "npm i && cd server && npm install && cd ../client && npm install --force",
     "start": "concurrently \"cd server && npm start\" \"cd client && npm run dev\""
   },
   "keywords": [],

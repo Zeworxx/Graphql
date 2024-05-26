@@ -1,6 +1,5 @@
 /* eslint-disable */
 import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
-import gql from 'graphql-tag';
 import * as VueApolloComposable from '@vue/apollo-composable';
 import type * as VueCompositionApi from '@vue/composition-api';
 export type Maybe<T> = T | null;
@@ -194,7 +193,7 @@ export type CreateUserMutationMutationVariables = Exact<{
 }>;
 
 
-export type CreateUserMutationMutation = { __typename?: 'Mutation', createUser?: { __typename?: 'CreateUserResponse', code: number, success: boolean, message: string } | null };
+export type CreateUserMutation = { __typename?: 'Mutation', createUser?: { __typename?: 'CreateUserResponse', code: number, success: boolean, message: string } | null };
 
 export type DeleteArticleMutationVariables = Exact<{
   articleId: Scalars['String']['input'];
@@ -226,7 +225,7 @@ export type SignInMutationVariables = Exact<{
 }>;
 
 
-export type SignInMutation = { __typename?: 'Mutation', signIn?: { __typename?: 'SignInResponse', token?: string | null, userId?: string | null, code: number, message: string, success: boolean } | null };
+export type SignInMutation = { __typename?: 'Mutation', signIn?: { __typename?: 'SignInResponse', code: number, success: boolean, message: string, token?: string | null } | null };
 
 export type UnlikeArticleMutationVariables = Exact<{
   articleId: Scalars['String']['input'];
@@ -247,9 +246,19 @@ export type UpdateArticleMutation = { __typename?: 'Mutation', updateArticle?: {
 export type GetArticlesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetArticlesQuery = { __typename?: 'Query', getArticles?: Array<{ __typename?: 'Article', id: string, content: string, userId: string, comments?: Array<{ __typename?: 'Comment', id: string, content: string, userId: string, articleId: string }> | null, likes?: Array<{ __typename?: 'Like', id: string, userId: string, articleId: string }> | null }> | null };
+export type GetArticlesQuery = { __typename?: 'Query', getArticles?: Array<{ __typename?: 'Article', id: string, content: string, userId: string, comments?: Array<{ __typename?: 'Comment', id: string, content: string, userId: string, articleId: string }> | null, likes?: Array<{ __typename?: 'Like', userId: string, articleId: string }> | null }> | null };
 
 
+export const CreateArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"content"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"content"},"value":{"kind":"Variable","name":{"kind":"Name","value":"content"}}},{"kind":"Argument","name":{"kind":"Name","value":"userId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"article"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}}]}}]}}]} as unknown as DocumentNode<CreateArticleMutation, CreateArticleMutationVariables>;
+export const CreateCommentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateComment"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"content"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createComment"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"content"},"value":{"kind":"Variable","name":{"kind":"Name","value":"content"}}},{"kind":"Argument","name":{"kind":"Name","value":"userId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}},{"kind":"Argument","name":{"kind":"Name","value":"articleId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"comment"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"articleId"}}]}}]}}]}}]} as unknown as DocumentNode<CreateCommentMutation, CreateCommentMutationVariables>;
+export const CreateUserMutationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateUserMutation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<CreateUserMutation, CreateUserMutationVariables>;
+export const DeleteArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"articleId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}}},{"kind":"Argument","name":{"kind":"Name","value":"userId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<DeleteArticleMutation, DeleteArticleMutationVariables>;
+export const DeleteCommentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteComment"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteComment"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"articleId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}}},{"kind":"Argument","name":{"kind":"Name","value":"userId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<DeleteCommentMutation, DeleteCommentMutationVariables>;
+export const LikeArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"LikeArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"likeArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"articleId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}}},{"kind":"Argument","name":{"kind":"Name","value":"userId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<LikeArticleMutation, LikeArticleMutationVariables>;
+export const SignInDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SignIn"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"signIn"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"token"}}]}}]}}]} as unknown as DocumentNode<SignInMutation, SignInMutationVariables>;
+export const UnlkieArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UnlkieArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unlikeArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"articleId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"articleId"}}},{"kind":"Argument","name":{"kind":"Name","value":"userId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<UnlkieArticleMutation, UnlkieArticleMutationVariables>;
+export const UpdateArticleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateArticle"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateArticleId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"content"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateArticle"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateArticleId"}}},{"kind":"Argument","name":{"kind":"Name","value":"content"},"value":{"kind":"Variable","name":{"kind":"Name","value":"content"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"success"}},{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"article"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<UpdateArticleMutation, UpdateArticleMutationVariables>;
+export const GetArticlesQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetArticlesQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getArticles"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"comments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"articleId"}}]}},{"kind":"Field","name":{"kind":"Name","value":"likes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"articleId"}}]}}]}}]}}]} as unknown as DocumentNode<GetArticlesQuery, GetArticlesQueryVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -433,7 +442,7 @@ export type CreateUserMutationMutationVariables = Exact<{
 }>;
 
 
-export type CreateUserMutationMutation = { __typename?: 'Mutation', createUser?: { __typename?: 'CreateUserResponse', code: number, success: boolean, message: string } | null };
+export type CreateUserMutation = { __typename?: 'Mutation', createUser?: { __typename?: 'CreateUserResponse', code: number, success: boolean, message: string } | null };
 
 export type DeleteArticleMutationVariables = Exact<{
   articleId: Scalars['String']['input'];
@@ -465,7 +474,7 @@ export type SignInMutationVariables = Exact<{
 }>;
 
 
-export type SignInMutation = { __typename?: 'Mutation', signIn?: { __typename?: 'SignInResponse', token?: string | null, userId?: string | null, code: number, message: string, success: boolean } | null };
+export type SignInMutation = { __typename?: 'Mutation', signIn?: { __typename?: 'SignInResponse', code: number, success: boolean, message: string, token?: string | null } | null };
 
 export type UnlikeArticleMutationVariables = Exact<{
   articleId: Scalars['String']['input'];
@@ -486,7 +495,7 @@ export type UpdateArticleMutation = { __typename?: 'Mutation', updateArticle?: {
 export type GetArticlesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetArticlesQuery = { __typename?: 'Query', getArticles?: Array<{ __typename?: 'Article', id: string, content: string, userId: string, comments?: Array<{ __typename?: 'Comment', id: string, content: string, userId: string, articleId: string }> | null, likes?: Array<{ __typename?: 'Like', id: string, userId: string, articleId: string }> | null }> | null };
+export type GetArticlesQuery = { __typename?: 'Query', getArticles?: Array<{ __typename?: 'Article', id: string, content: string, userId: string, comments?: Array<{ __typename?: 'Comment', id: string, content: string, userId: string, articleId: string }> | null, likes?: Array<{ __typename?: 'Like', userId: string, articleId: string }> | null }> | null };
 
 
 export const CreateArticleDocument = gql`
@@ -526,21 +535,7 @@ export function useCreateArticleMutation(options: VueApolloComposable.UseMutatio
   return VueApolloComposable.useMutation<CreateArticleMutation, CreateArticleMutationVariables>(CreateArticleDocument, options);
 }
 export type CreateArticleMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<CreateArticleMutation, CreateArticleMutationVariables>;
-export const CreateCommentDocument = gql`
-    mutation CreateComment($content: String!, $userId: ID!, $articleId: ID!) {
-  createComment(content: $content, userId: $userId, articleId: $articleId) {
-    code
-    success
-    message
-    comment {
-      id
-      content
-      userId
-      articleId
-    }
-  }
-}
-    `;
+
 
 /**
  * __useCreateCommentMutation__
@@ -565,15 +560,6 @@ export function useCreateCommentMutation(options: VueApolloComposable.UseMutatio
   return VueApolloComposable.useMutation<CreateCommentMutation, CreateCommentMutationVariables>(CreateCommentDocument, options);
 }
 export type CreateCommentMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<CreateCommentMutation, CreateCommentMutationVariables>;
-export const CreateUserMutationDocument = gql`
-    mutation CreateUserMutation($username: String!, $password: String!) {
-  createUser(username: $username, password: $password) {
-    code
-    success
-    message
-  }
-}
-    `;
 
 /**
  * __useCreateUserMutationMutation__
@@ -596,16 +582,7 @@ export const CreateUserMutationDocument = gql`
 export function useCreateUserMutationMutation(options: VueApolloComposable.UseMutationOptions<CreateUserMutationMutation, CreateUserMutationMutationVariables> | ReactiveFunction<VueApolloComposable.UseMutationOptions<CreateUserMutationMutation, CreateUserMutationMutationVariables>> = {}) {
   return VueApolloComposable.useMutation<CreateUserMutationMutation, CreateUserMutationMutationVariables>(CreateUserMutationDocument, options);
 }
-export type CreateUserMutationMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<CreateUserMutationMutation, CreateUserMutationMutationVariables>;
-export const DeleteArticleDocument = gql`
-    mutation DeleteArticle($articleId: String!, $userId: ID!) {
-  deleteArticle(articleId: $articleId, userId: $userId) {
-    code
-    success
-    message
-  }
-}
-    `;
+export type CreateUserMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<CreateUserMutation, CreateUserMutationVariables>;
 
 /**
  * __useDeleteArticleMutation__
@@ -629,15 +606,6 @@ export function useDeleteArticleMutation(options: VueApolloComposable.UseMutatio
   return VueApolloComposable.useMutation<DeleteArticleMutation, DeleteArticleMutationVariables>(DeleteArticleDocument, options);
 }
 export type DeleteArticleMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<DeleteArticleMutation, DeleteArticleMutationVariables>;
-export const DeleteCommentDocument = gql`
-    mutation DeleteComment($articleId: String!, $userId: ID!) {
-  deleteComment(articleId: $articleId, userId: $userId) {
-    code
-    success
-    message
-  }
-}
-    `;
 
 /**
  * __useDeleteCommentMutation__
@@ -693,17 +661,6 @@ export function useLikeArticleMutation(options: VueApolloComposable.UseMutationO
   return VueApolloComposable.useMutation<LikeArticleMutation, LikeArticleMutationVariables>(LikeArticleDocument, options);
 }
 export type LikeArticleMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<LikeArticleMutation, LikeArticleMutationVariables>;
-export const SignInDocument = gql`
-    mutation signIn($username: String!, $password: String!) {
-  signIn(username: $username, password: $password) {
-    token
-    userId
-    code
-    message
-    success
-  }
-}
-    `;
 
 /**
  * __useSignInMutation__
@@ -727,15 +684,6 @@ export function useSignInMutation(options: VueApolloComposable.UseMutationOption
   return VueApolloComposable.useMutation<SignInMutation, SignInMutationVariables>(SignInDocument, options);
 }
 export type SignInMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<SignInMutation, SignInMutationVariables>;
-export const UnlikeArticleDocument = gql`
-    mutation UnlikeArticle($articleId: String!, $userId: String!) {
-  unlikeArticle(articleId: $articleId, userId: $userId) {
-    code
-    success
-    message
-  }
-}
-    `;
 
 /**
  * __useUnlikeArticleMutation__
@@ -758,19 +706,7 @@ export const UnlikeArticleDocument = gql`
 export function useUnlikeArticleMutation(options: VueApolloComposable.UseMutationOptions<UnlikeArticleMutation, UnlikeArticleMutationVariables> | ReactiveFunction<VueApolloComposable.UseMutationOptions<UnlikeArticleMutation, UnlikeArticleMutationVariables>> = {}) {
   return VueApolloComposable.useMutation<UnlikeArticleMutation, UnlikeArticleMutationVariables>(UnlikeArticleDocument, options);
 }
-export type UnlikeArticleMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<UnlikeArticleMutation, UnlikeArticleMutationVariables>;
-export const UpdateArticleDocument = gql`
-    mutation UpdateArticle($updateArticleId: ID!, $content: String!) {
-  updateArticle(id: $updateArticleId, content: $content) {
-    code
-    success
-    message
-    article {
-      id
-    }
-  }
-}
-    `;
+export type UnlkieArticleMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<UnlkieArticleMutation, UnlkieArticleMutationVariables>;
 
 /**
  * __useUpdateArticleMutation__
@@ -794,26 +730,6 @@ export function useUpdateArticleMutation(options: VueApolloComposable.UseMutatio
   return VueApolloComposable.useMutation<UpdateArticleMutation, UpdateArticleMutationVariables>(UpdateArticleDocument, options);
 }
 export type UpdateArticleMutationCompositionFunctionResult = VueApolloComposable.UseMutationReturn<UpdateArticleMutation, UpdateArticleMutationVariables>;
-export const GetArticlesQueryDocument = gql`
-    query GetArticlesQuery {
-  getArticles {
-    id
-    content
-    userId
-    comments {
-      id
-      content
-      userId
-      articleId
-    }
-    likes {
-      id
-      userId
-      articleId
-    }
-  }
-}
-    `;
 
 /**
  * __useGetArticlesQuery__

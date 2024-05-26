@@ -3,5 +3,8 @@ mutation CreateUserMutation($username: String!, $password: String!) {
     code
     success
     message
+    user {
+      id
+    }
   }
 }

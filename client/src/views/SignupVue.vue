@@ -29,6 +29,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
+import { useCreateUserMutation } from '../generated/graphql';
 
 const model = ref({
     username: '',
@@ -83,8 +84,10 @@ const signup = async () => {
 
         const result = await createUser() || {};
 
+        console.log(result.data?.createUser)
         if (result.data?.createUser?.success) {
             localStorage.setItem('logged', 'true');
+            localStorage.setItem('userId', result.data?.createUser?.user?.id || '');
             useRouter().push('/');
         } else {
             console.log('User not created');

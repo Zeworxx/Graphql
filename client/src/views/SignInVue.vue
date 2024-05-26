@@ -14,6 +14,7 @@
                                 class="mb-4 block h-9 w-full border border-black bg-gray-100 px-3 py-6 pl-14 text-sm text-black"
                                 maxlength="23" name="login" placeholder="Votre login" required />
                         </div>
+                        
                         <div class="relative mb-4">
                             <FontAwesomeIcon icon="lock"
                                 class="absolute bottom-0 left-[5%] right-auto top-[26%] inline-block text-2xl" />

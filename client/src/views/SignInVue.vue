@@ -93,6 +93,7 @@ const login = async () => {
         if (result?.data?.signIn?.success) {
             console.log('User logged in');
             window.localStorage.setItem('authToken', result?.data?.signIn?.token || '');
+            window.localStorage.setItem('userid', result?.data?.signIn?.userId || '');
             axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.signIn.token}`;
             router.push({ name: 'Home' });
         } else {

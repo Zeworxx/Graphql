@@ -84,8 +84,10 @@ const signup = async () => {
 
         const result = await createUser() || {};
 
+        console.log(result.data?.createUser)
         if (result.data?.createUser?.success) {
             localStorage.setItem('logged', 'true');
+            localStorage.setItem('userId', result.data?.createUser?.user?.id || '');
             useRouter().push('/');
         } else {
             console.log('User not created');

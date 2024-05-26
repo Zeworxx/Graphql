@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <section>
         <div class="grid md:h-screen md:grid-cols-2">
             <div class="flex flex-col items-center justify-center bg-white">
@@ -90,9 +90,9 @@ const login = async () => {
         const { mutate: signIn } = useSignInMutation()
 
         const result = await signIn({ username: model.value.username, password: model.value.password })
-        if (result?.data.signIn.success) {
+        if (result?.data?.signIn?.success) {
             console.log('User logged in');
-            window.localStorage.setItem('authToken', result.data.signIn.token);
+            window.localStorage.setItem('authToken', result?.data?.signIn?.token || '');
             axios.defaults.headers.common['Authorization'] = `Bearer ${result.data.signIn.token}`;
             router.push({ name: 'Home' });
         } else {
@@ -147,4 +147,4 @@ const login = async () => {
         transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
     }
 }
-</style> -->
+</style>

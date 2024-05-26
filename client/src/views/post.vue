@@ -1,7 +1,7 @@
 <template>
-    <div class="grid grid-cols-3 gap-">
+    <div class="grid grid-cols-2">
         <div></div>
-        <section v-if="articles.length" class="m-2 p- border overflow-hidden overscroll-contain">
+        <section v-if="articles.length" class="m-2 p-0 border overflow-hidden overscroll-contain flex">
             <div v-for="article in articles" :key="article.id" :post="article" class="mb-2 w-full">
                 <div class="bg-white rounded-lg shadow-md p-4 mb-8">
                     <p class="mt-4">{{ article.content }}</p>
@@ -12,17 +12,21 @@
                         </button>
                         <button class="flex items-center text-gray-500" @click="commentArticle">
                             <i class="fas fa-comment-alt mr-1"></i>
-                            <span @click="openComments(article.id)">{{ article.comments.length }} Comment(s)</span>
+                            <span>{{ article.comments.length }} Comment(s)</span>
                         </button>
                     </div>
                 </div>
+                <!-- Commentaires -->
+                {{ article }}
+                <div>
+                    <h3>Comments:</h3>
+                    <!-- <div v-for="comment in article.comments" :key="comment.id">
+                    <p><strong>{{ comment.author }}</strong>: {{ comment.content }}</p>
+                </div> -->
+                </div>
             </div>
         </section>
-        <div v-else class="m-2 p-4 border">
-            <p>No post found</p>
-        </div>
-        <!-- Commentaires -->
-        <div></div>
+    
     </div>
 </template>
 <script setup lang="ts">
